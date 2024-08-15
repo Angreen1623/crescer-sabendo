@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\VagaVoluntario;
+use App\Models\Ong;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -80,7 +81,11 @@ class VagaVoluntarioController
      */
     public function show(VagaVoluntario $vagaVoluntario)
     {
-        //
+        $vagas = $vagaVoluntario->where('Id_Ong', Session::get('ong')->Id_Ong)->get();
+        $ong = new Ong;
+        $ong = $ong->where('Id_Ong', Session::get('ong')->Id_Ong)->get();
+
+        return view('user/ong/volunteer', compact('vagas', 'ong'));
     }
 
     /**

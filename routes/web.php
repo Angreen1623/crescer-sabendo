@@ -49,10 +49,9 @@ Route::get('/ong/courses', function () {
 Route::get('/ong/mural', function () {
     return view('user/ong/mural');
 })->middleware(\App\Http\Middleware\Auth::class);
+
 Route::post('/createvolunteer', [VagaVoluntarioController::class, 'create'])->middleware(\App\Http\Middleware\Auth::class);
-Route::get('/ong/volunteer', function () {
-    return view('user/ong/volunteer');
-})->middleware(\App\Http\Middleware\Auth::class);
+Route::get('/ong/volunteer', [VagaVoluntarioController::class, 'show'])->middleware(\App\Http\Middleware\Auth::class);
 
 
 // Aluno

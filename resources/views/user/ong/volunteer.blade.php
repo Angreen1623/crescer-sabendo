@@ -100,38 +100,47 @@
                         <div class="flex flex-col md:flex-row justify-between mt-6 space-y-4 md:space-y-0 md:space-x-4">
                             <div class="w-full md:w-1/4">
                                 <label for="name-ar" class="text-black">Nome da área</label>
-                                <input id="name-ar" type="text" name="name-ar" class="mt-1 block w-full rounded-xl px-3.5 py-2 border-4 border-customRed">
+                                <input id="name-ar" required type="text" name="name-ar" class="mt-1 block w-full rounded-xl px-3.5 py-2 border-4 border-customRed">
                             </div>
                             <div class="w-full md:w-1/4">
                                 <label for="tel-cont" class="text-black">Telefone para contato</label>
-                                <input id="tel-cont" type="text" name="tel-cont" class="mt-1 block w-full rounded-xl px-3.5 py-2 border-4 border-customRed">
+                                <input id="tel-cont" required maxlength="15" type="text" name="tel-cont" class="mt-1 block w-full rounded-xl px-3.5 py-2 border-4 border-customRed">
                             </div>
                             <div class="w-full md:w-1/4">
                                 <label for="email" class="text-black">E-mail para contato</label>
-                                <input id="email" type="text" name="email" class="mt-1 block w-full rounded-xl px-3.5 py-2 border-4 border-customRed">
+                                <input id="email" required type="text" name="email" class="mt-1 block w-full rounded-xl px-3.5 py-2 border-4 border-customRed">
                             </div>
                             <div class="w-full md:w-1/4">
                                 <label for="cidade" class="text-black">Cidade</label>
-                                <input id="cidade" type="text" name="cidade" class="mt-1 block w-full rounded-xl px-3.5 py-2 border-4 border-customRed">
+                                <input id="cidade" required type="text" name="cidade" class="mt-1 block w-full rounded-xl px-3.5 py-2 border-4 border-customRed">
                             </div>
                         </div>
                         <!--segunda parte do formulário-->
                         <div class="flex flex-col md:flex-row justify-between mt-4 space-y-4 md:space-y-0 md:space-x-4">
                             <div class="w-full md:w-2/3">
                                 <label for="voluntarios" class="text-black">Voluntários desejados</label>
-                                <textarea id="voluntarios" name="voluntarios" placeholder="Descreva o motivo pela procura de voluntários e os requisitos a serem atendidos " class="mt-1 block w-full resize-none border-4 border-customRed rounded-xl px-6 py-3"></textarea>
+                                <textarea id="voluntarios" required name="voluntarios" placeholder="Descreva o motivo pela procura de voluntários e os requisitos a serem atendidos " class="mt-1 block w-full resize-none border-4 border-customRed rounded-xl px-6 py-3"></textarea>
                             </div>
                             <div class="w-full md:w-1/3 flex md:flex-row flex-col gap-4">
                                 <div class="flex flex-col flex-1">
                                     <label for="day" class="text-black">Dias da semana</label>
-                                    <input id="day" type="text" name="day" placeholder="Ex: Segunda a sexta" class="mt-1 block w-full rounded-xl px-3.5 py-2 border-4 border-customRed">
+                                    <input id="day" required type="text" name="day" placeholder="Ex: Segunda a sexta" class="mt-1 block w-full rounded-xl px-3.5 py-2 border-4 border-customRed">
                                 </div>
                                 <div class="flex flex-col flex-1">
                                     <label for="hour" class="text-black">Horário</label>
-                                    <input id="hour" type="text" name="hour" placeholder="Ex: 13h às 14h" class="mt-1 block w-full rounded-xl px-3.5 py-2 border-4 border-customRed">
+                                    <input id="hour" required type="text" name="hour" placeholder="Ex: 13h às 14h" class="mt-1 block w-full rounded-xl px-3.5 py-2 border-4 border-customRed">
                                 </div>
                             </div>
                         </div>
+                        @if ($errors->any())
+                        <div class="mt-4">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li class="text-red-500">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                         <!--botão de criação-->
                         <div class="flex place-content-end mt-4">
                             <button class="bg-red-500 text-lg text-white rounded-lg px-10 py-2 hover:bg-red-900">Criar</button>
@@ -142,17 +151,19 @@
         </div>
     </div>
     <!--card de exibição da necessidade-->
-    <div class="flex items-center justify-center">
+    <div class="flex flex-col items-center justify-center">
+        @if($vagas)
+        @foreach($vagas as $vaga)
         <div class="w-full max-w-5xl rounded-xl bg-gray-100 border-2 border-gray-400 py-6 px-4 sm:px-10 items-center justify-center mt-4">
             <div class="flex flex-col">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                     <div class="flex items-center">
                         <label class="text-black mr-1">ONG:</label>
-                        <label class="text-red-500 font-bold">Crescer Sabendo</label><!--adicionar back-end-->
+                        <label class="text-red-500 font-bold">{{ $ong[0]->Nome }}</label><!--adicionar back-end-->
                     </div>
                     <div class="flex flex-col items-start sm:items-end mt-4 sm:mt-0">
-                        <label>Tel: (11) 99999-9999</label>
-                        <label>E-mail: xxxx@gmail.com</label>
+                        <label>Tel: {{ $vaga->Telefone }}</label>
+                        <label>E-mail: {{ $vaga->Email }}</label>
                     </div>
                 </div>
                 <!-- Linhas horizontais -->
@@ -161,11 +172,8 @@
                 </div>
 
                 <div class="flex flex-col justify-between">
-                    <h1 class="text-lg font-bold text-indigo-900 flex justify-center items-center">Necessidade: Professor de música</h1><!--adicionar back-end-->
-                    <p class="text-justify text-lg w-full my-4">Procuramos professores de música com experiência em ensino e domínio de pelo menos um instrumento musical.<!--adicionar back-end-->
-                        Os candidatos devem ser comprometidos, pacientes e ter disponibilidade para ministrar aulas semanais.
-                        Além disso, buscamos pessoas que tenham sensibilidade para trabalhar em comunidades carentes, com o desejo
-                        de fazer a diferença na vida dos alunos por meio da arte.</p>
+                    <h1 class="text-lg font-bold text-indigo-900 flex justify-center items-center">Necessidade: {{ $vaga->Nomearea }}</h1><!--adicionar back-end-->
+                    <p class="text-justify text-lg w-full my-4">{{ $vaga->Sobre }}</p>
                 </div>
                 <!-- Seção de localização, horário e botões -->
                 <div class="flex flex-col sm:flex-row items-start sm:items-center mt-4 sm:justify-end">
@@ -177,7 +185,7 @@
                                     <path d="M59 211 c-17 -18 -29 -40 -29 -56 0 -30 28 -86 65 -130 l25 -30 25 30 c37 44 65 100 65 130 0 38 -50 85 -90 85 -22 0 -41 -9 -61 -29z m91 -36 c15 -18 10 -45 -12 -59 -35 -22 -74 27 -48 59 16 19 44 19 60 0z" />
                                 </g>
                             </svg>
-                            São Paulo</label>
+                            {{ $vaga->Cidade }}</label>
                     </div>
 
                     <!-- Container para horário e botões, que vai para a direita -->
@@ -190,7 +198,7 @@
                                     <path d="M412 280 c-70 -43 -92 -128 -49 -191 62 -93 189 -87 239 12 23 45 23 86 -2 127 -42 68 -124 91 -188 52z m86 -81 c2 -19 13 -44 25 -57 16 -17 18 -25 9 -34 -21 -21 -72 38 -72 82 0 61 33 69 38 9z" />
                                 </g>
                             </svg>
-                            Horário 13h às 17h - Segunda a sexta</label>
+                            Horário {{ $vaga->Horario }} - {{ $vaga->Dias }}</label>
                     </div>
                     <!-- Botões do crud -->
                     <div class="flex sm:flex-row gap-4 mt-4 sm:mt-0 sm:ml-4 self-center">
@@ -200,6 +208,8 @@
                 </div>
             </div>
         </div>
+        @endforeach
+        @endif
     </div>
 </body>
 
