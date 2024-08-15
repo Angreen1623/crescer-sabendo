@@ -90,9 +90,7 @@
             </div>
             <div class="flex items-center flex-col ">
 
-                @php
-                $ong = Session::get('ong');
-                @endphp
+                
                 <div class="flex items-center space-x-2 mt-10 ">
                     @if($ong)
                     <p class="text-2xl">{{$ong->Nome}}</p>

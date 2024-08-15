@@ -118,8 +118,8 @@
                         <td class="py-2 px-4">{{$ong->Nome}}</td>
                         <td class="py-2 px-4">{{$ong->Email }}</td>
                         <td class="py-2 px-4 flex justify-center items-center gap-5">
-                            <form action="{{ route('showOng', ['Id_Ong' => $ong->Id_Ong]) }}" method="POST">
-                                <button class="  text-gray-500">
+                            <form action="{{ route('showOng', ['Id_Ong' => $ong->Id_Ong]) }}" method="GET">
+                                <button class="      text-gray-500">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 20c-2.27-2.27-5.64-3.63-9-3.63s-6.73 1.36-9 3.63" />
@@ -163,7 +163,7 @@
         <div class="bg-white rounded-lg shadow-lg h-101  p-6 w-80 md:w-2/6 mx-4 flex flex-col">
             <div class="flex flex-col mt-20 gap-12">
                 @if(isset($ong))
-                <form action="{{ route('showOng', ['ong' => $ong]) }}" method="post">
+                <form action="{{ route('showOng', ['Id_Ong' => $ong->Id_Ong]) }}" method="post">
                     <button type="submit" class="w-full bg-customBlue2 text-white py-2 rounded-xl hover:bg-blue-500">
                         Ver Página da ONG
                     </button>

@@ -189,7 +189,7 @@
             </div>
         </div>
     </div>
-
+   
 
     <!--Data teacher-->
     <div class="w-full h-96 shadow-sm flex justify-center items-center my-14">
@@ -199,7 +199,7 @@
                 @if($aluno)
                 <p class="font-itim text-2xl font-bold h-20 ">Nome: {{$aluno->Nome}}</p>
                 <p class="font-itim text-2xl font-bold h-20">Email: {{$aluno->Email}}</p>
-                <p class="font-itim text-2xl font-bold h-20">RM: {{$aluno->RM}}</p>
+                <p class="font-itim text text-2xl font-bold h-20">RM: {{$aluno->id}}</p>
                 @endif
 
             </div>
