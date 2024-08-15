@@ -90,24 +90,56 @@
                         perto
                         da sua casa.</p>
                 </div>
-                <div class="flex items-center justify-center flex-col sm:flex-row  max-w-md mx-4">
-                    <label class="relative block w-full mb-4 md:mb-0">
+                <div class="flex items-center justify-center flex-col sm:flex-row max-w-md mx-4">
+                <form action="#" method="get" class="flex flex-col items-center justify-center w-full py-2 space-y-4">
+                    <label class="relative block w-full text-center">
                         <span class="sr-only">Search</span>
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                            <svg class="h-5 w-5 fill-slate-300" viewBox="0 0 50 40">
-                                <image xlink:href="{{ asset('images/icons/iconHouse.svg') }}" alt="Logo" class="w-12">
-                                </image>
-                            </svg>
-                        </span>
-                        <input
-                            class="block bg-gray-100 w-full border-2 border-customYellow rounded-full py-2 pl-9 pr-3 lg:pr-20 shadow appearance-none text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            placeholder="Onde você está?" type="text" name="search" />
+                        <select name="estado" id="estado" class="border-2 border-customYellow rounded-full py-1 px-3 w-full md:w-80">
+                        <option value="select">Selecione o Estado em que você reside</option>
+                        <option value="ac">Acre</option>
+                        <option value="al">Alagoas</option>
+                        <option value="ap">Amapá</option>
+                        <option value="am">Amazonas</option>
+                        <option value="ba">Bahia</option>
+                        <option value="ce">Ceará</option>
+                        <option value="df">Distrito Federal</option>
+                        <option value="es">Espírito Santo</option>
+                        <option value="go">Goiás</option>
+                        <option value="ma">Maranhão</option>
+                        <option value="mt">Mato Grosso</option>
+                        <option value="ms">Mato Grosso do Sul</option>
+                        <option value="mg">Minas Gerais</option>
+                        <option value="pa">Pará</option>
+                        <option value="pb">Paraíba</option>
+                        <option value="pr">Paraná</option>
+                        <option value="pe">Pernambuco</option>
+                        <option value="pi">Piauí</option>
+                        <option value="rj">Rio de Janeiro</option>
+                        <option value="rn">Rio Grande do Norte</option>
+                        <option value="rs">Rio Grande do Sul</option>
+                        <option value="ro">Rondônia</option>
+                        <option value="rr">Roraima</option>
+                        <option value="sc">Santa Catarina</option>
+                        <option value="sp">São Paulo</option>
+                        <option value="se">Sergipe</option>
+                        <option value="to">Tocantins</option>
+                    </select>
+                    <br><br>
+                        <select name="zona" id="zona" class="border-2 border-customYellow rounded-full py-1 px-3 w-full md:w-80">
+                            <option value="select">Selecione a Zona em que você reside</option>
+                            <option value="norte">Norte</option>
+                            <option value="sul">Sul</option>
+                            <option value="leste">Leste</option>
+                            <option value="oeste">Oeste</option>
+                            <option value="centro">Centro</option>
+                        </select>
+                      
+                       
                     </label>
-                    <button
-                        class="w-full md:w-40 h-10 bg-customYellow hover:bg-yellow-500 rounded-full font-bold md:ml-2">Pesquisar</button>
-                </div>
-
-
+                    <button class="w-full md:w-40 h-10 bg-customYellow hover:bg-yellow-500 rounded-full font-bold" type="submit">Pesquisar</button>
+                </form>
+            </div>
+            
             </div>
         </div>
     </div>
@@ -170,9 +202,7 @@
                 <p class="font-itim font-bold text-3xl"> Alfabetização</p>
             </div>
             <div class="flex flex-wrap justify-between mt-2 ml-5">
-                <div class="w-1/2 flex items-end h-20">
-                    <a href="#" class="font-itim text-base py-2 px-2"> Saiba mais.</a>
-                </div>
+             
                 <div class="w-1/2 flex justify-end items-end">
                     <img src="{{ asset('images/book.png') }}" alt="" class="object-cover w-36 h-36">
                 </div>
@@ -183,9 +213,7 @@
                 <p class="font-itim font-bold text-3xl"> Inclusão Educacional</p>
             </div>
             <div class="flex flex-wrap justify-between mt-2 ml-5">
-                <div class="w-1/2 flex items-end h-16">
-                    <a href="#" class="font-itim text-base py-2 px-2"> Saiba mais.</a>
-                </div>
+              
                 <div class="w-1/2 flex justify-end items-end">
                     <img src="{{ asset('images/hand.png') }}" alt="" class="object-cover w-36 h-36">
                 </div>
@@ -196,7 +224,6 @@
                 <p class="font-itim font-bold text-2xl" style="word-break: break-all; white-space: normal;">
                     Apoio a <br>Professores e<br> Educadores
                 </p>
-                <a href="#" class="font-itim text-base py-2 px-2"> Saiba mais.</a>
             </div>
             <div class="w-1/2 pr-5">
                 <img src="{{ asset('images/teacher.png') }}" alt="" class="object-cover w-36 h-36">
@@ -414,29 +441,7 @@
 
 
     <!--Partner-->
-    <div id="home"
-        class="relative w-full h-screen flex flex-col sm:flex-row items-center justify-center bg-[url('/public/images/backContent-Green.png')]  bg-no-repeat bg-cover bg-center overflow-hidden">
-        <!-- Texto e Botão -->
-        <div
-            class="w-full sm:w-1/2 flex flex-col justify-center items-center text-center sm:text-left sm:items-center mb-8 sm:mb-0">
-            <h1 class="text-3xl sm:text-5xl md:text-6xl font-itim text-black mb-4 leading-tight">QUER AJUDAR?</h1>
-            <p class="text-base sm:text-2xl font-serif text-black mb-4 leading-snug">
-                Encontre e apoie ONGs<br>
-                comprometidas com a<br>
-                educação das futuras<br>
-                gerações.
-            </p>
-            <button
-                class="bg-customYellow hover:bg-green-800 text-black font-bold py-2 px-4 rounded-full w-full sm:w-60 h-14">
-                Seja parceiro
-            </button>
-        </div>
-        <!-- Imagem -->
-        <div class="w-full sm:w-1/2 flex items-center justify-center p-4 sm:p-8">
-            <img src="{{ asset('images/Co-workers.png') }}" alt="Co-work"
-                class="object-contain w-full sm:w-auto h-auto max-w-xs sm:max-w-full">
-        </div>
-    </div>
+   
 
 
 
