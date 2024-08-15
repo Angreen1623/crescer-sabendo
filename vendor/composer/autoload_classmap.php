@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Http\\Controllers\\Admin' => $baseDir . '/app/Http/Controllers/Admin.php',
     'App\\Http\\Controllers\\AlunoController' => $baseDir . '/app/Http/Controllers/AlunoController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\CursoController' => $baseDir . '/app/Http/Controllers/CursoController.php',
@@ -16,6 +17,7 @@ return array(
     'App\\Http\\Controllers\\VagaVoluntarioController' => $baseDir . '/app/Http/Controllers/VagaVoluntarioController.php',
     'App\\Http\\Middleware\\Auth' => $baseDir . '/app/Http/Middleware/Auth.php',
     'App\\Http\\Middleware\\Prof' => $baseDir . '/app/Http/Middleware/Prof.php',
+    'App\\Http\\Requests\\adicionarRequest' => $baseDir . '/app/Http/Requests/adicionarRequest.php',
     'App\\Models\\Aluno' => $baseDir . '/app/Models/Aluno.php',
     'App\\Models\\Curso' => $baseDir . '/app/Models/Curso.php',
     'App\\Models\\Login' => $baseDir . '/app/Models/Login.php',

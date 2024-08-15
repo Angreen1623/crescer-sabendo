@@ -66,6 +66,7 @@
     <!-- Tabela de Gerenciamento -->
     <h2 class=" text-gray-500 text-xl  md:text-3xl  text-center mb-4">Gerenciar ONGs Cadastradas</h2>
     <!-- Tabela de Gerenciamento -->
+    @if(isset($ongs))
     <div class="flex justify-center mx-auto  rounded-lg  p-6">
 
         <div class="overflow-x-auto overflow-y-auto max-h-[400px]">
@@ -76,38 +77,84 @@
                         <th class="py-2 px-4 text-white">Email</th>
                         <th class="py-2 px-4 text-center">
                             <div class="block relative text-left">
-                                <form action="{{route('searchOngs')}}" method="GET">
-                                    <input type="text" name="email" class="py-2 pl-4 w-56 rounded-lg border font-normal border-gray-300 focus:outline-none focus:ring focus:border-blue-300" placeholder="Pesquisar...">
-                                    <button type="submit" class="absolute left-48 top-0 mt-2 text-gray-600">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                <form action="{{ route('searchOngs') }}" method="GET" class="flex items-center">
+                                    <input
+                                        type="text"
+                                        name="email"
+                                        class="py-2 pl-4 w-56 rounded-lg border font-normal border-gray-300 focus:outline-none focus:ring focus:border-blue-300"
+                                        placeholder="Pesquisar...">
+                                    <button type="submit" class="ml-2 flex items-center text-gray-600">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="1.5"
+                                            stroke="currentColor"
+                                            class="w-6 h-6">
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                                         </svg>
+                                    </button>
+                                    <button type="submit" class="ml-2 flex items-center text-gray-600" value="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5V1.5m0 0a9 9 0 1 0 9 9h-1.5a7.5 7.5 0 1 1-7.5-7.5v1.5m0-6h-6.75A9 9 0 0 1 12 4.5z" />
+                                        </svg>
+
                                     </button>
                                 </form>
                             </div>
+
 
                         </th>
                     </tr>
                 </thead>
                 <tbody class="border border-black">
-                    @if($ongs || $ong)
+
                     @foreach($ongs as $ong)
+
                     <tr class="border-b">
                         <td class="py-2 px-4">{{$ong->Nome}}</td>
-                        <td class="py-2 px-4">{{ $ong->Email }}</td>
-                        <td class="py-2 px-4 text-right">
-                            <button class="text-gray-500 mr-16" onclick="openModal('{{$ong->Nome}}', '{{$ong->Email}}', '{{ $ong->Telefone }}', '{{ $ong->Endereco }}')">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                        <td class="py-2 px-4">{{$ong->Email }}</td>
+                        <td class="py-2 px-4 flex justify-center items-center gap-5">
+                            <form action="{{ route('showOng', ['Id_Ong' => $ong->Id_Ong]) }}" method="POST">
+                                <button class="  text-gray-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 20c-2.27-2.27-5.64-3.63-9-3.63s-6.73 1.36-9 3.63" />
+                                    </svg>
+                                </button>
+                            </form>
+
+                            <button class="  text-gray-500" onclick="openModal('{{$ong->Nome}}', '{{$ong->Email}}', '{{ $ong->Telefone }}', '{{ $ong->Endereco }}')">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 9h9m-9 4h6m-6 4h9M13.5 2.25a.75.75 0 0 1 .75.75v5.25a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V3a.75.75 0 0 1 .75-.75h6.75zM12 2.25a.75.75 0 0 1 .75.75v5.25a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V3a.75.75 0 0 1 .75-.75h6.75zM21 5.25v13.5a.75.75 0 0 1-.75.75H3.75a.75.75 0 0 1-.75-.75V5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 .75.75z" />
                                 </svg>
+
                             </button>
+
+
+                            <form class="" action="{{ route('deleteong', ['Id_Ong' => $ong->Id_Ong]) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta ONG?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="  rounded-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-red-500">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </form>
                         </td>
 
                     </tr>
+
+
+
+
                     @endforeach
-                    @else
-                    <p>Não há ongs</p>
-                    @endif
+
+
+
                 </tbody>
             </table>
         </div>
@@ -115,19 +162,15 @@
     <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
         <div class="bg-white rounded-lg shadow-lg h-101  p-6 w-80 md:w-2/6 mx-4 flex flex-col">
             <div class="flex flex-col mt-20 gap-12">
-                <a class="w-full" href="{{ route('showOng', ['Id_Ong' => $ong->Id_Ong]) }}">
-                    <button class="w-full bg-customBlue2 text-white py-2 rounded-xl hover:bg-blue-500">
+                @if(isset($ong))
+                <form action="{{ route('showOng', ['ong' => $ong]) }}" method="post">
+                    <button type="submit" class="w-full bg-customBlue2 text-white py-2 rounded-xl hover:bg-blue-500">
                         Ver Página da ONG
                     </button>
-                </a>
-                <button class="bg-customBlue2 text-white py-2 rounded-xl hover:bg-blue-500" onclick="toggleModal('modal-dados')">Dados de Contato</button>
-
-                <form class="" action="{{ route('deleteong', ['Id_Ong' => $ong->Id_Ong]) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta ONG?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="w-full bg-customBlue2 text-white py-2 rounded-xl hover:bg-blue-500">Excluir Cadastro da ONG</button>
                 </form>
 
+                <button class="bg-customBlue2 text-white py-2 rounded-xl hover:bg-blue-500" onclick="toggleModal('modal-dados')">Dados de Contato</button>
+                @endif
 
             </div>
             <div class="mt-auto">
@@ -136,6 +179,7 @@
         </div>
     </div>
     </div>
+
 
     <div id="modal-dados" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
         <div class="bg-white rounded-lg shadow-lg h-101 p-6 w-80 md:w-2/6 mx-4 flex flex-col">
@@ -153,6 +197,10 @@
             </div>
         </div>
     </div>
+    @else
+    <p>Não há ongs</p>
+    @endif
+
 
     <footer class="w-full mt-auto">
         <img class="w-full h-auto" src="{{ asset('images/footerBlue.png') }}" alt="">

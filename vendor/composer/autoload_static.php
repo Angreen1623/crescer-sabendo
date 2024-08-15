@@ -508,6 +508,7 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
     );
 
     public static $classMap = array (
+        'App\\Http\\Controllers\\Admin' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin.php',
         'App\\Http\\Controllers\\AlunoController' => __DIR__ . '/../..' . '/app/Http/Controllers/AlunoController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CursoController' => __DIR__ . '/../..' . '/app/Http/Controllers/CursoController.php',
@@ -518,6 +519,7 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'App\\Http\\Controllers\\VagaVoluntarioController' => __DIR__ . '/../..' . '/app/Http/Controllers/VagaVoluntarioController.php',
         'App\\Http\\Middleware\\Auth' => __DIR__ . '/../..' . '/app/Http/Middleware/Auth.php',
         'App\\Http\\Middleware\\Prof' => __DIR__ . '/../..' . '/app/Http/Middleware/Prof.php',
+        'App\\Http\\Requests\\adicionarRequest' => __DIR__ . '/../..' . '/app/Http/Requests/adicionarRequest.php',
         'App\\Models\\Aluno' => __DIR__ . '/../..' . '/app/Models/Aluno.php',
         'App\\Models\\Curso' => __DIR__ . '/../..' . '/app/Models/Curso.php',
         'App\\Models\\Login' => __DIR__ . '/../..' . '/app/Models/Login.php',

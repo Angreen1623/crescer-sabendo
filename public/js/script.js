@@ -300,7 +300,7 @@ function toggleText(id) {
     const element = document.getElementById(id);
     element.classList.toggle("hidden");
 }
-function openModal(nome, email, telefone, endereco) {
+function openModal( nome, email, telefone, endereco) {
     // Atualiza o conteúdo do modal com os dados da ONG
     document.getElementById("modal-nome").textContent = nome;
     document.getElementById("modal-email").textContent = email;
@@ -308,7 +308,7 @@ function openModal(nome, email, telefone, endereco) {
     document.getElementById("modal-endereco").textContent = endereco;
 
     // Mostra o modal
-    toggleModal("modal");
+    toggleModal("modal-dados");
 }
 
 function toggleModal(modalId) {

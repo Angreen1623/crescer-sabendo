@@ -39,9 +39,8 @@ class Admin extends Controller
     }
 
     // Arrumar
-    public function showOng($Id_Ong)
+    public function showOng($ong)
     {
-        $ong = Ong::where('Id_Ong', $Id_Ong)->firstOrFail();
-        return view('user.ong.account', ['ong' => $ong]);
+        return view('user.ong.account', compact('ong'));
     }
 }

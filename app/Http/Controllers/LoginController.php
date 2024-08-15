@@ -29,15 +29,14 @@ class LoginController
         if ($professor !== null && Hash::check($senha, $professor->Senha)) {
 
             // Iniciar sessão para o professor
-            Session::put('professor', $professor);
-            return redirect('/prof/account');
+            return redirect('/prof/account', compact('professor'));
         }
 
         if ($ong !== null && Hash::check($senha, $ong->Senha)) {
 
             // Iniciar sessão para a ONG
-            Session::put('ong', $ong);
-            return redirect('/ong/account');
+            
+            return redirect('/ong/account',  compact('ong'));
         }
 
         if ($responsavel !== null && Hash::check($senha, $responsavel->Senha)) {
@@ -46,7 +45,7 @@ class LoginController
             $aluno = Aluno::where('Email', $email)->first();
             Session::put('responsavel', $responsavel);
             Session::put('aluno', $aluno);
-            return redirect('/aluno/account');
+            return redirect('/aluno/account', compact('aluno', 'responsavel'));
         }
 
         // Se nenhuma das condições for atendida
