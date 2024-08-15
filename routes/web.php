@@ -99,6 +99,7 @@ Route::get('/prof/notas', function () {
 
 // Admin
 Route::get('/admin', [Admin::class, 'getOng']);
+
 Route::get('/aprovarong', function () {
     return view('admin/aprovarOng');
 });

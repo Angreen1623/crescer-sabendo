@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ong;
+use App\Models\Aluno;
+
+use App\Models\Curso;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -12,9 +16,13 @@ class Admin extends Controller
     {
         // Obtendo todas as ONGs do banco de dados
         $ongs = Ong::all();
+        $countOngs = Ong::all()->count();
+        $countAlunos = Aluno::all()->count();
+
+        $countCursos = Curso::all()->count();
 
         // Passando as ONGs para a view
-        return view('admin.adminPage', compact('ongs'));
+        return view('admin.adminPage', compact('ongs', 'countOngs', 'countAlunos', 'countCursos'));
     }
 
     public function deleteOng($id_ong)
@@ -31,11 +39,14 @@ class Admin extends Controller
     public function searchOngs(Request $request)
     {
         $email = $request->input('email');
+        $countOngs = Ong::all()->count();
+        $countAlunos = Aluno::all()->count();
 
+        $countCursos = Curso::all()->count();
         // Filtra ONGs pelo email fornecido
         $ongs = Ong::where('Email', 'LIKE', '%' . $email . '%')->get();
 
-        return view('admin.adminPage', ['ongs' => $ongs]);
+        return view('admin.adminPage', ['ongs' => $ongs], compact('countOngs', 'countAlunos', 'countCursos'));
     }
 
     // Arrumar
