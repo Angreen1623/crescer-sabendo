@@ -28,7 +28,7 @@ class VagaVoluntarioController
             'tel-cont' => 'required|string|size:15',
             'email' => 'required|email',
             'cidade' => 'required|string|max:50',
-            'voluntarios' => 'required|string|max:255',
+            'voluntarios' => 'required|string',
             'day' => 'required|string|max:50',
             'hour' => 'required|string|max:25',
         ], [
@@ -42,7 +42,6 @@ class VagaVoluntarioController
             'cidade.required' => 'O campo cidade deve ser preenchido',
             'cidade.max' => 'O campo cidade deve ter no máximo :max caracteres',
             'voluntarios.required' => 'O campo voluntários desejados deve ser preenchido',
-            'voluntarios.max' => 'O campo voluntários desejados deve ter no máximo :max caracteres',
             'day.required' => 'O campo dias da semana deve ser preenchido',
             'day.max' => 'O campo dias da semana deve ter no máximo :max caracteres',
             'hour.required' => 'O campo horário deve ser preenchido',
@@ -54,6 +53,12 @@ class VagaVoluntarioController
 
         $vaga = new VagaVoluntario();
 
+        if(!empty(Session::get('ong')->Id_Ong)){
+            $ong_id = Session::get('ong')->Id_Ong;
+        }else{
+            $ong_id = Session::get('ong')->id;
+        }
+
         $vaga->Nomearea = $req->input('name-ar');
         $vaga->Telefone = $req->input('tel-cont');
         $vaga->Email = $req->input('email');
@@ -61,7 +66,7 @@ class VagaVoluntarioController
         $vaga->Sobre = $req->input('voluntarios');
         $vaga->Dias = $req->input('day');
         $vaga->Horario = $req->input('hour');
-        $vaga->Id_Ong = Session::get('ong')->Id_Ong;
+        $vaga->Id_Ong = $ong_id;
 
         $vaga->save();
 
@@ -81,9 +86,16 @@ class VagaVoluntarioController
      */
     public function show(VagaVoluntario $vagaVoluntario)
     {
-        $vagas = $vagaVoluntario->where('Id_Ong', Session::get('ong')->Id_Ong)->get();
+        if(!empty(Session::get('ong')->Id_Ong)){
+            $ong_id = Session::get('ong')->Id_Ong;
+        }else{
+            $ong_id = Session::get('ong')->id;
+        }
+
+        $vagas = $vagaVoluntario->where('Id_Ong', $ong_id)->get();
         $ong = new Ong;
-        $ong = $ong->where('Id_Ong', Session::get('ong')->Id_Ong)->get();
+
+        $ong = $ong->where('Id_Ong', $ong_id)->get();
 
         return view('user/ong/volunteer', compact('vagas', 'ong'));
     }

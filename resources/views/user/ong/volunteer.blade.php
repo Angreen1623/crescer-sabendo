@@ -84,7 +84,12 @@
                 </svg>
             </div>
             <div class="absolute left-36 bottom-0 transform translate-y-3/4 py-6 px-4">
-                <label class="text-3xl font-bold text-black">Nome da ONG</label>
+                @if(isset($ongs))
+                <label class="text-3xl font-bold text-black">{{ $ongs->Nome }}</label>
+                @else
+                <label class="text-3xl font-bold text-black">{{ Session::get('ong')->Nome }}</label>
+                @endif
+
             </div>
         </div>
     </div>
