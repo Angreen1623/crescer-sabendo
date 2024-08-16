@@ -25,27 +25,28 @@ class LoginController
         $ong = Ong::where('Email', $email)->first();
         $responsavel = Responsavel::where('Email', $email)->first();
 
-        echo $professor;
         if ($professor !== null && Hash::check($senha, $professor->Senha)) {
 
             // Iniciar sessão para o professor
-            return redirect('/prof/account', compact('professor'));
+            session()->put('professor', $professor);
+            return redirect()->route('profaccount');
         }
 
         if ($ong !== null && Hash::check($senha, $ong->Senha)) {
 
             // Iniciar sessão para a ONG
-            
-            return redirect('/ong/account',  compact('ong'));
+            session()->put('ong', $ong);
+            return redirect()->route('ongaccount');
         }
 
         if ($responsavel !== null && Hash::check($senha, $responsavel->Senha)) {
 
             // Iniciar sessão para o responsavel
             $aluno = Aluno::where('Email', $email)->first();
-            Session::put('responsavel', $responsavel);
-            Session::put('aluno', $aluno);
-            return redirect('/aluno/account', compact('aluno', 'responsavel'));
+
+            session()->put('aluno', $aluno);
+            session()->put('responsavel', $responsavel);
+            return redirect()->route('alunoaccount');
         }
 
         // Se nenhuma das condições for atendida
@@ -53,7 +54,7 @@ class LoginController
     }
     public function logout()
     {
-        Session::flush();
+        session()->flush();
         Auth::logout();
         // Redirecionar para a página de login ou outra página de sua escolha
         return redirect('/');

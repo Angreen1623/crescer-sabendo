@@ -53,6 +53,8 @@ class Admin extends Controller
     public function showOng($Id_Ong)
     {
         $ong = Ong::where('Id_Ong', $Id_Ong)->first();
-        return view('user.ong.account', compact('ong'));
+
+        session()->put('ong', $ong);
+        return redirect()->route('ongaccount');
     }
 }

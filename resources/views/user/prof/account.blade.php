@@ -101,13 +101,11 @@
             <div class="flex flex-col ml-20 -mt-20">
                 <img src="https://vojislavd.com/ta-template-demo/assets/img/profile.jpg"
                     class="w-40 border-4 border-white rounded-full">
-                @php
-                $professor = Session::get('professor');
-                @endphp
+                @if(session('professor'))
                 <div class="flex items-start space-x-2 mt-2">
-                    <p class="text-2xl">{{$professor->Nome}}</p>
+                    <p class="text-2xl">{{session('professor')->Nome}}</p>
                 </div>
-
+                @endif
             </div>
         </div>
     </div>
@@ -199,20 +197,23 @@
     <!--END Main modal -->
 
     <!--Data teacher-->
+    @if(session('professor'))
+
     <div class="w-full h-96 flex justify-center items-center my-14">
         <div id="gridCourses"
             class="my-20 bg-customBrown md:w-8/12 w-full rounded-4xl p-10 flex flex-wrap justify-between">
             <div class="w-full md:w-1/2">
-                <p class="font-itim text-2xl font-bold h-20 ">Nome: {{$professor->Nome}}</p>
-                <p class="font-itim text-2xl font-bold h-20">Email: {{$professor->Email}}</p>
-                <p class="font-itim text-2xl font-bold h-20">Data de Nascimento: {{$professor->Nascimento}}</p>
+                <p class="font-itim text-2xl font-bold h-20 ">Nome: {{session('professor')->Nome}}</p>
+                <p class="font-itim text-2xl font-bold h-20">Email: {{session('professor')->Email}}</p>
+                <p class="font-itim text-2xl font-bold h-20">Data de Nascimento: {{session('professor')->Nascimento}}</p>
             </div>
             <div class="w-full md:w-1/2">
-                <p class="font-itim text-2xl font-bold h-20">Telefone: {{$professor->Telefone}}</p>
-                <p class="font-itim text-2xl font-bold h-20">Formação: {{$professor->Formacao}}</p>
+                <p class="font-itim text-2xl font-bold h-20">Telefone: {{session('professor')->Telefone}}</p>
+                <p class="font-itim text-2xl font-bold h-20">Formação: {{session('professor')->Formacao}}</p>
             </div>
         </div>
     </div>
+    @endif
     <!--End Data teacher-->
 
     <!--My Courses-->

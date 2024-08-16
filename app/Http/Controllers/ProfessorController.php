@@ -59,7 +59,7 @@ class ProfessorController
 
 
         $professor->save();
-        Session::put('professor', $professor);
-        return redirect('/prof/account');
+        session()->put('professor', $professor);
+        return redirect()->route('profaccount');
     }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\OngController;
 use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\CursoController;
 use App\Http\Controllers\LoginController;
 
 
@@ -39,12 +40,13 @@ Route::get('/ong/signup', function () {
 });
 Route::get('/ong/account', function () {
     return view('user.ong.account');
-})->middleware(\App\Http\Middleware\Auth::class);
-Route::post('/createong', [OngController::class, 'create']);
+})->name('ongaccount')->middleware(\App\Http\Middleware\Auth::class);
 
-Route::get('/ong/courses', function () {
-    return view('user/ong/courses');
-})->middleware(\App\Http\Middleware\Auth::class);
+Route::post('/createong', [OngController::class, 'create']);
+Route::get('/ong/courses', [CursoController::class, 'index'])->name('cursos.index')->middleware(\App\Http\Middleware\Auth::class);;
+Route::resource('cursos', CursoController::class)->middleware(\App\Http\Middleware\Auth::class);;
+Route::post('/cursos', [CursoController::class, 'store'])->name('cursos.store')->middleware(\App\Http\Middleware\Auth::class);;
+Route::delete('/cursos/{id}', [CursoController::class, 'destroy'])->name('cursos.destroy')->middleware(\App\Http\Middleware\Auth::class);;
 Route::get('/ong/mural', function () {
     return view('user/ong/mural');
 })->middleware(\App\Http\Middleware\Auth::class);
@@ -60,7 +62,7 @@ Route::get('/aluno/signup', function () {
 Route::post('/createaluno', [AlunoController::class, 'create']);
 Route::get('/aluno/account', function () {
     return view('user.aluno.account');
-})->middleware(\App\Http\Middleware\Auth::class);
+})->name('alunoaccount')->middleware(\App\Http\Middleware\Auth::class);
 Route::get('/aluno/mural', function () {
     return view('user.aluno.mural');
 })->middleware(\App\Http\Middleware\Auth::class);
@@ -79,7 +81,7 @@ Route::get('/prof/signup', function () {
 Route::post('/createprofessor', [ProfessorController::class, 'create']);
 Route::get('/prof/account', function () {
     return view('user.prof.account');
-})->middleware(\App\Http\Middleware\Auth::class);
+})->name('profaccount')->middleware(\App\Http\Middleware\Auth::class);
 
 Route::get('/prof/mural', function () {
     return view('user.prof.mural');

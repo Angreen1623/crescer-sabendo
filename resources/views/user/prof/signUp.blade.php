@@ -57,11 +57,11 @@
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700">Senha</label>
-                    <input type="text" required name="Senha" class="w-full p-2 rounded-xl border-2 border-purple-900 h-12 focus:outline-none">
+                    <input type="password" required name="Senha" class="w-full p-2 rounded-xl border-2 border-purple-900 h-12 focus:outline-none">
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700">Confirmar Senha</label>
-                    <input type="text" required name="C_Senha" class="w-full p-2 rounded-xl border-2 border-purple-900 h-12 focus:outline-none">
+                    <input type="password" required name="C_Senha" class="w-full p-2 rounded-xl border-2 border-purple-900 h-12 focus:outline-none">
                 </div>
                 <button type="submit" class="w-full bg-purple-900 text-white p-2 rounded-xl text-lg font-semibold hover:bg-purple-700">Cadastrar-se</button>
                 @if ($errors->any())

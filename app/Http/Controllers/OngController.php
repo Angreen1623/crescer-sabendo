@@ -90,7 +90,7 @@ class OngController
 
 
         $ong->save();
-        Session::put('ong', $ong);
-        return redirect('/ong/account');
+        session()->put('ong', $ong);
+        return redirect()->route('ongaccount');
     }
 }

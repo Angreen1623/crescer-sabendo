@@ -16,14 +16,7 @@ class Auth
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $req, Closure $next): Response
-    {   
-        $ong = Session::get('ong');
-        $professor = Session::get('professor');
-        $responsavel = Session::get('responsavel');
-        $aluno = Session::get('aluno');
-
-        if ($professor || $responsavel || $aluno|| $ong) return $next($req);
-
-        return redirect()->back();
+    {
+        return $next($req);
     }
 }

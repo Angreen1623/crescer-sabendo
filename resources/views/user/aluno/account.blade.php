@@ -44,10 +44,7 @@
             <a href="/aluno/chat" class="block text-customBlue text-lg font-itim py-1 hover:text-customRed">Chat</a>
         </div>
     </header>
-    @php
-    $aluno = Session::get('aluno');
-    $responsavel = Session::get('responsavel');
-    @endphp
+
 
 
     <!-- End Header -->
@@ -104,11 +101,11 @@
             <div class="flex flex-col ml-20 -mt-20">
                 <img src="https://vojislavd.com/ta-template-demo/assets/img/profile.jpg"
                     class="w-40 border-4 border-white rounded-full">
-                <div class="flex items-start space-x-2 mt-2">
-                    @if($aluno)
-                    <p class="text-2xl">{{$aluno->Nome}}</p>
-                    @endif
+                @if(session('aluno'))
+                <div class="flex items-center space-x-2 mt-10">
+                    <p class="text-2xl">{{ session('aluno')->Nome }}</p>
                 </div>
+                @endif
             </div>
         </div>
     </div>
@@ -189,25 +186,25 @@
             </div>
         </div>
     </div>
-   
+
 
     <!--Data teacher-->
     <div class="w-full h-96 shadow-sm flex justify-center items-center my-14">
         <div id="gridCourses"
             class="my-20 bg-customBrown md:w-8/12 w-full rounded-4xl p-10 flex flex-wrap justify-between">
             <div class="w-full md:w-1/2">
-                @if($aluno)
-                <p class="font-itim text-2xl font-bold h-20 ">Nome: {{$aluno->Nome}}</p>
-                <p class="font-itim text-2xl font-bold h-20">Email: {{$aluno->Email}}</p>
-                <p class="font-itim text text-2xl font-bold h-20">RM: {{$aluno->id}}</p>
+                @if(session('aluno'))
+                <p class="font-itim text-2xl font-bold h-20 ">Nome: {{session('aluno')->Nome}}</p>
+                <p class="font-itim text-2xl font-bold h-20">Email: {{session('aluno')->Email}}</p>
+                <p class="font-itim text text-2xl font-bold h-20">RM: {{session('aluno')->id}}</p>
                 @endif
 
             </div>
             <div class="w-full md:w-1/2">
-                @if($responsavel)
-                <p class="font-itim text-2xl font-bold h-20">Telefone Resp: {{$responsavel->Telefone}}</p>
-                <p class="font-itim text-2xl font-bold h-20">Endereço: {{$responsavel->Endereco}}</p>
-                <p class="font-itim text-2xl font-bold h-20">CEP: {{$responsavel->CEP}}</p>
+                @if(session('responsavel'))
+                <p class="font-itim text-2xl font-bold h-20">Telefone Resp: {{session('responsavel')->Telefone}}</p>
+                <p class="font-itim text-2xl font-bold h-20">Endereço: {{session('responsavel')->Endereco}}</p>
+                <p class="font-itim text-2xl font-bold h-20">CEP: {{session('responsavel')->CEP}}</p>
                 @endif
             </div>
 
@@ -429,6 +426,8 @@
                 class="relative inset-0 w-full h-full object-fit ">
         </div>
     </footer>
+
+
     <!-- END Teacher Footer Image -->
 </body>
 
